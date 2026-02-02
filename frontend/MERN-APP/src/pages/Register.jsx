@@ -44,7 +44,7 @@ export default function Register() {
           <label>Password:</label>
           <input
             type="password"
-            name="email"
+            name="password"
             onChange={() => {
               setFormData({ ...formData, password: e.target.value });
             }}
