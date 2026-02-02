@@ -12,8 +12,8 @@ export default function Register() {
   const [error, setError] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:5000/api/auth/register", formData);
-    navigate("/");
+    await axios.post("http://localhost:5000/api/user/register", formData);
+    navigate("/login");
   };
   return (
     <>
@@ -45,7 +45,7 @@ export default function Register() {
           <input
             type="password"
             name="password"
-            onChange={() => {
+            onChange={(e) => {
               setFormData({ ...formData, password: e.target.value });
             }}
           />

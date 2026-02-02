@@ -8,16 +8,20 @@ export default function Login() {
   const navigator = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
-    const res = await axios.post("http://localhost:5000/api/auth/login", {
-      email,
-      password,
-    });
-    localStorage.setItem("token", res.data.token);
-    navigator("/dashboard");
+    try {
+      const res = await axios.post("http://localhost:5000/api/user/login", {
+        email,
+        password,
+      });
+      localStorage.setItem("token", res.data.token);
+      navigator("/dashboard");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>
-      <form>
+      <form onSubmit={handleLogin}>
         <div>
           <label htmlFor="">Email:</label>
           <input
@@ -35,7 +39,7 @@ export default function Login() {
             type="password"
             name="password"
             onChange={(e) => {
-              setEmail(e.target.value);
+              setPassword(e.target.value);
             }}
           />
         </div>

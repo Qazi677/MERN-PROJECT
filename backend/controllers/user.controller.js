@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
-const user = require("../models/user.model");
+const { user } = require("../models/user.model");
+const jwt = require("jsonwebtoken");
 
 exports.userRegiterd = async (req, res) => {
   try {
@@ -36,16 +37,16 @@ exports.userRegiterd = async (req, res) => {
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    res.status(404).json({ message: "All fields are required" });
+    return res.status(404).json({ message: "All fields are required" });
   }
   const logedInUser = await user.findOne({ email });
   if (!logedInUser) {
-    res.status(404).json({ message: "invalid credential" });
+    return res.status(404).json({ message: "invalid credential" });
   }
   const isMatch = await bcrypt.compare(password, logedInUser.password);
   if (!isMatch) {
-    res.status(400).json({ message: "invalid credentail" });
+    return res.status(400).json({ message: "invalid credentail" });
   }
-  const token = jwt.sign({ id: user._id });
-  res.json(token);
+  const token = jwt.sign({ id: logedInUser._id }, "zaidkhan");
+  res.json({ token });
 };
