@@ -13,7 +13,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios.post("http://localhost:5000/api/user/register", formData);
-    navigate("/login");
+    navigate("/");
   };
   return (
     <>
