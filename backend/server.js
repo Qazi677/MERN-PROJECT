@@ -7,7 +7,11 @@ const { connection } = require("./config/conn");
 const cors = require("cors");
 dotenv.config();
 connection();
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  }),
+);
 app.use(express.json());
 app.use("/api/user", userRoutes);
 
