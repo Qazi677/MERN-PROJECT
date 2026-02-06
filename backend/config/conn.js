@@ -1,7 +1,7 @@
 const moongoose = require("mongoose");
 exports.connection = async () => {
   try {
-    moongoose.connect("mongodb://localhost:27017/full-stack");
+    moongoose.connect(process.env.MONGO_URI);
     console.log("connection succesfully established");
   } catch (error) {
     console.log("soome error happen in connectioin");
