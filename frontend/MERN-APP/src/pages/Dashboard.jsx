@@ -6,11 +6,14 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/api/user", {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const res = await axios.get(
+        "https://YOUR-BACKEND.onrender.com/api/user",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
       setUser(res.data);
     };
     fetchUser();

@@ -12,7 +12,10 @@ export default function Register() {
   const [error, setError] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:5000/api/user/register", formData);
+    await axios.post(
+      "https://YOUR-BACKEND.onrender.com/api/user/register",
+      formData,
+    );
     navigate("/");
   };
   return (
